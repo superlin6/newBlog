@@ -1,12 +1,11 @@
 <template>
   <el-menu
-    :default-active="activeIndex"
+    :default-active="data.activeIndex"
     class="nav-bar"
     mode="horizontal"
     background-color="#545c64"
     text-color="#fff"
-    active-text-color="#ffd04b"
-    @select="handleSelect"
+    active-text-color="rgb(255,215,0)"
     router="true"
   >
     <el-menu-item index="/home">个人主页</el-menu-item>
@@ -28,21 +27,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, reactive, watch } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   setup() {
-    const activeIndex = ref('1')
-    const handleSelect = (key:any, keyPath:any) => {
-      console.log('hello')
-      console.log(key, keyPath)
-    }
+    const route = useRoute();
+    let activeIndex:string = route.path;
+    let data = reactive({
+      activeIndex
+    })
+    watch(()=>route.path,(cur,pre)=>data.activeIndex = cur)
     return {
-      activeIndex,
-      handleSelect,
-    }
+      data,
+    };
   },
-})
+});
 </script>
 
 <style>
