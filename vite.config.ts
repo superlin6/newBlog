@@ -6,6 +6,7 @@ const Components = require('unplugin-vue-components/vite')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 export default defineConfig({
+  base:'./',
   plugins: [
     vue(),
     Components({
@@ -14,13 +15,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname,'./src'),
+      "@": path.resolve(__dirname, './src'),
     }
-},
+  },
 })
-// export default {
-//   plugins: [
-//     // ...
-//     vue(),
-//   ],
-// }

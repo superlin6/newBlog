@@ -61,34 +61,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { reactive } from "@vue/reactivity";
 export default {
-  setup(props) {
+  setup() {
     // console.log(props);
 
     const data = reactive({
       picLists: [
         {
-          imgUrl: "/src/static/img/1.jpeg",
+          imgUrl: "img/1.jpeg",
           title: "title1",
           link: "#",
           text: "text1",
         },
         {
-          imgUrl: "/src/static/img/2.jpeg",
+          imgUrl: "img/2.jpeg",
           title: "title2",
           link: "#",
           text: "text2",
         },
         {
-          imgUrl: "/src/static/img/3.jpeg",
+          imgUrl: "img/3.jpeg",
           title: "title3",
           link: "#",
           text: "text3",
         },
         {
-          imgUrl: "/src/static/img/4.jpeg",
+          imgUrl: "img/4.jpeg",
           title: "title4",
           link: "#",
           text: "text4",
