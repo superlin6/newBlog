@@ -9,11 +9,11 @@ import { defineComponent } from 'vue'
 import Beehive from '@/components/content/beehive/Beehive.vue'
 
 export default defineComponent({
-    name:'Picture',
-    components:{ Beehive },
+    name: 'Picture',
+    components: { Beehive },
     setup() {
-        
-    },
+
+    }
 })
 </script>
 

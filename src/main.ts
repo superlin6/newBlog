@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index'
+import ViewUIPlus from 'view-ui-plus'
+import 'view-ui-plus/dist/styles/viewuiplus.css'
 import animate from "animate.css";
 import '../src/assets/css/main.less'
 import '../src/assets/css/fonts.less'
 const app = createApp(App)
-app.use(router).use(animate)
+app.use(router).use(animate).use(ViewUIPlus)
 app.mount('#app')

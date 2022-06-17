@@ -33,6 +33,6 @@ export default defineComponent({
 
 <style lang="less" scoped>
   .view {
-    height: calc(100vh - 61px);
+    height: calc(100% - 60px);
   }
 </style>

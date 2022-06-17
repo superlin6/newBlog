@@ -24,6 +24,7 @@
                 </el-card>
             </div>
         </transition>
+        <!-- <ToDoList /> -->
         <Cube />
         <Windmill />
     </div>
@@ -33,15 +34,17 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import Cube from '../../components/content/animation/Cube.vue'
 import Windmill from '../../components/content/animation/Windmill.vue'
+// import ToDoList from '../../components/content/todolist/ToDoList.vue';
 export default defineComponent({
     name: 'Home',
     components: {
-        Cube,
-        Windmill
-    },
+    Cube,
+    Windmill,
+    // ToDoList
+},
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
-        let isShow: Ref<Boolean> = ref(false);
+        const isShow: Ref<Boolean> = ref(false);
         const timeList: Ref<Array<Object>> = ref([
             { id: 99, timestamp: '2022/5/20', title: 'update index page', commitInfo: 'coderlin committed' },
             { id: 98, timestamp: '2022/5/19', title: 'update index page', commitInfo: 'coderlin committed' },
@@ -58,9 +61,7 @@ export default defineComponent({
             isShow.value = true;
         }
         onMounted(() => {
-            setTimeout(() => {
-                myname.value.className = 'name_desc animate__animated animate__fadeInUp';
-            }, 1000)
+            myname.value.className = 'name_desc animate__animated animate__fadeInUp';
         })
         return {
             myname,
@@ -103,16 +104,21 @@ export default defineComponent({
         overflow: hidden;
         >.el-card {
             margin: 20px;
+            height: calc(100% - 40px);
 
             .timeline {
                 width: 16%;
+                padding: 8px;
+                
                 .title {
                     font-family: 'yuan';
                     margin-bottom: 10px;
                 }
                 .el-timeline {
+                    border: 1px solid rgb(240, 240, 240);
+                    border-radius: 8px;
                     height: 400px;
-                    padding:10px;
+                    padding:18px;
                     overflow-y: auto;
                     scrollbar-width: none;
                     /* firefox */

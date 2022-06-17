@@ -26,8 +26,6 @@ export default defineComponent({
     };
 
     onMounted(() => {
-      console.log(context);
-      console.log(cube);
     });
     return {
       data,
