@@ -9,69 +9,52 @@
         <transition name="fadein">
             <div class="content" v-if="isShow">
                 <el-card>
-                    <div class="timeline">
-                        <div class="title">时间线（可滚动）</div>
-                        <el-timeline>
-                            <el-timeline-item v-for="item in timeList" :key="item.id" :timestamp="item.timestamp"
-                                placement="top">
-                                <el-card>
-                                    <h4>{{ item.title }}</h4>
-                                    <p>{{ item.commitInfo }}</p>
-                                </el-card>
-                            </el-timeline-item>
-                        </el-timeline>
+                    <div class="top">
+                        <TimeLine />
+                        <ToDoList />
                     </div>
+                    <div class="bottom"></div>
                 </el-card>
             </div>
         </transition>
-        <!-- <ToDoList /> -->
         <Cube />
         <Windmill />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
-import Cube from '../../components/content/animation/Cube.vue'
-import Windmill from '../../components/content/animation/Windmill.vue'
-// import ToDoList from '../../components/content/todolist/ToDoList.vue';
+import { defineComponent, onMounted, Ref, ref } from 'vue';
+import Cube from '../../components/content/animation/Cube.vue';
+import Windmill from '../../components/content/animation/Windmill.vue';
+import ToDoList from '../../components/content/todolist/ToDoList.vue';
+import TimeLine from '../../components/content/timeline/TimeLine.vue';
 export default defineComponent({
     name: 'Home',
     components: {
-    Cube,
-    Windmill,
-    // ToDoList
-},
+        Cube,
+        Windmill,
+        ToDoList,
+        TimeLine
+    },
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
         const isShow: Ref<Boolean> = ref(false);
-        const timeList: Ref<Array<Object>> = ref([
-            { id: 99, timestamp: '2022/5/20', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 98, timestamp: '2022/5/19', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 97, timestamp: '2022/5/18', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 96, timestamp: '2022/5/17', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 95, timestamp: '2022/5/16', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 94, timestamp: '2022/5/16', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 93, timestamp: '2022/5/16', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 92, timestamp: '2022/5/16', title: 'update index page', commitInfo: 'coderlin committed' },
-            { id: 91, timestamp: '2022/5/16', title: 'update index page', commitInfo: 'coderlin committed' },
-        ])
 
         const showContent = () => {
             isShow.value = true;
-        }
+        };
         onMounted(() => {
-            myname.value.className = 'name_desc animate__animated animate__fadeInUp';
-        })
+            if (myname.value)
+                myname.value.className =
+                    'name_desc animate__animated animate__fadeInUp';
+        });
         return {
             myname,
             isShow,
-            showContent,
-            timeList
+            showContent
         };
     }
-
-})
+});
 </script>
 
 
@@ -79,7 +62,7 @@ export default defineComponent({
 .home {
     height: 100%;
 
-    >.title {
+    > .title {
         position: absolute;
         top: 40vh;
         left: 0;
@@ -96,44 +79,23 @@ export default defineComponent({
         .hide {
             display: none;
         }
-
     }
 
     .content {
         height: 100%;
         overflow: hidden;
-        >.el-card {
+        > .el-card {
             margin: 20px;
             height: calc(100% - 40px);
-
-            .timeline {
-                width: 16%;
-                padding: 8px;
-                
-                .title {
-                    font-family: 'yuan';
-                    margin-bottom: 10px;
-                }
-                .el-timeline {
-                    border: 1px solid rgb(240, 240, 240);
-                    border-radius: 8px;
-                    height: 400px;
-                    padding:18px;
-                    overflow-y: auto;
-                    scrollbar-width: none;
-                    /* firefox */
-                    -ms-overflow-style: none;
-                    /* IE 10+ */
-                    &::-webkit-scrollbar {
-                        // chrome safari
-                        display: none;
-                    }
-                }
+            .top {
+                display: flex;
+                align-items: center;
+            }
+            .bottom {
+                display: flex;
             }
         }
-
     }
-
 
     .fade-enter-active,
     .fade-leave-active {
