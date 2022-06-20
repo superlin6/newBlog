@@ -118,14 +118,18 @@ const useAdd = (todos) => {
 };
 
 // 2. 删除待办事项
-const useRemove = (todos) => {
-    const remove = (todo) => {
+const useRemove = (todos: Ref<Array<Object>>) => {
+    const remove = (todo: Object) => {
+        // console.log('todo', todo);
         const index = todos.value.indexOf(todo);
         todos.value.splice(index, 1);
     };
 
     const removeCompleted = () => {
-        todos.value = todos.value.filter((todo) => !todo.completed);
+        todos.value = todos.value.filter((todo: Object) => {
+            console.log('todo', todo);
+            return !todo.completed;
+        });
     };
     return {
         remove,
@@ -271,7 +275,6 @@ button {
     display: inline-block;
     margin-left: 80px;
     width: 440px;
-    height: 300px;
     border-radius: 8px;
     background: #fff;
     position: relative;
@@ -461,11 +464,6 @@ button {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
     color: #777;
     padding: 10px 15px;
     text-align: center;

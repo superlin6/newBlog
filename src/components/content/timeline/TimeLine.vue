@@ -1,6 +1,6 @@
 <template>
     <div class="timeline">
-        <div class="title">时间线（可滚动）</div>
+        <div class="title">时间线</div>
         <el-timeline>
             <el-timeline-item
                 v-for="item in timeList"
