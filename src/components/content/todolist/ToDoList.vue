@@ -97,10 +97,20 @@ import {
     watchEffect
 } from 'vue';
 
+interface TodoItemType {
+    text: string;
+    completed: boolean;
+}
+interface FilterType {
+    all: Ref<Array<Object>>;
+    active: Ref<Array<Object>>;
+    completed: Ref<Array<Object>>;
+}
+
 const storage = useLocalStorage();
 
 // 1. 添加待办事项
-const useAdd = (todos) => {
+const useAdd = (todos: Ref<Array<Object>>) => {
     const input = ref('');
     const addTodo = () => {
         const text = input.value?.trim();
@@ -120,14 +130,12 @@ const useAdd = (todos) => {
 // 2. 删除待办事项
 const useRemove = (todos: Ref<Array<Object>>) => {
     const remove = (todo: Object) => {
-        // console.log('todo', todo);
         const index = todos.value.indexOf(todo);
         todos.value.splice(index, 1);
     };
 
     const removeCompleted = () => {
-        todos.value = todos.value.filter((todo: Object) => {
-            console.log('todo', todo);
+        todos.value = todos.value.filter((todo: TodoItemType) => {
             return !todo.completed;
         });
     };
@@ -138,21 +146,21 @@ const useRemove = (todos: Ref<Array<Object>>) => {
 };
 
 // 3. 编辑待办事项
-const useEdit = (remove) => {
+const useEdit = (remove: Function) => {
     let beforeEditingText = '';
-    const editingTodo = ref(null);
+    const editingTodo: Ref<null> = ref(null);
 
-    const editTodo = (todo) => {
+    const editTodo = (todo: TodoItemType) => {
         beforeEditingText = todo.text;
         editingTodo.value = todo;
     };
-    const doneEdit = (todo) => {
+    const doneEdit = (todo: TodoItemType) => {
         if (!editingTodo.value) return;
         todo.text = todo.text.trim();
         if (todo.text === '') remove(todo);
         editingTodo.value = null;
     };
-    const cancelEdit = (todo) => {
+    const cancelEdit = (todo: TodoItemType) => {
         editingTodo.value = null;
         todo.text = beforeEditingText;
     };
@@ -165,26 +173,30 @@ const useEdit = (remove) => {
 };
 
 // 4. 切换待办项完成状态
-const useFilter = (todos) => {
+const useFilter = (todos: Ref<Array<Object>>) => {
     const allDone = computed({
         get: () => {
-            return !todos.value.filter((item) => !item.completed).length;
+            return !todos.value.filter((item: TodoItemType) => !item.completed)
+                .length;
         },
         set: (value) => {
-            todos.value.forEach((todo) => {
+            todos.value.forEach((todo: TodoItemType) => {
                 todo.completed = value;
             });
         }
     });
 
     const filter = {
-        all: (list) => list,
-        active: (list) => list.filter((todo) => !todo.completed),
-        completed: (list) => list.filter((todo) => todo.completed)
+        all: (list: Ref<Array<Object>>) => list,
+        active: (list: Ref<Array<Object>>) =>
+            list.filter((todo: TodoItemType) => !todo.completed),
+        completed: (list: Ref<Array<Object>>) =>
+            list.filter((todo: TodoItemType) => todo.completed)
     };
-
     const type = ref('all');
-    const filteredTodos = computed(() => filter[type.value](todos.value));
+    const filteredTodos = computed(() =>
+        filter[type.value as keyof FilterType](todos.value)
+    );
 
     const remainingCount = computed(() => filter.active(todos.value).length);
 
@@ -192,7 +204,7 @@ const useFilter = (todos) => {
 
     const onHashChange = () => {
         const hash = window.location.hash.replace('#/', '');
-        if (filter[hash]) {
+        if (filter[hash as keyof FilterType]) {
             type.value = hash;
         } else {
             type.value = 'all';
@@ -234,7 +246,6 @@ export default defineComponent({
         const todos = useStorage();
         const { remove, removeCompleted } = useRemove(todos);
         return {
-            todos,
             remove,
             removeCompleted,
             ...useAdd(todos),
