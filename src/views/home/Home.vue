@@ -8,13 +8,11 @@
         </transition>
         <transition name="fadein">
             <div class="content" v-if="isShow">
-                <el-card>
-                    <div class="top">
-                        <TimeLine />
-                        <ToDoList />
-                    </div>
-                    <div class="bottom"></div>
-                </el-card>
+                <div class="top">
+                    <TimeLine />
+                    <ToDoList />
+                </div>
+                <div class="bottom"></div>
             </div>
         </transition>
         <Cube />
@@ -84,16 +82,14 @@ export default defineComponent({
     .content {
         height: 100%;
         overflow: hidden;
-        > .el-card {
-            margin: 20px;
-            height: calc(100% - 40px);
-            .top {
-                display: flex;
-                align-items: center;
-            }
-            .bottom {
-                display: flex;
-            }
+        margin: 20px;
+        height: calc(100% - 40px);
+        .top {
+            display: flex;
+            align-items: center;
+        }
+        .bottom {
+            display: flex;
         }
     }
 
