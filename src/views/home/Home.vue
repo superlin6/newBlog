@@ -8,6 +8,7 @@
         </transition>
         <transition name="fadein">
             <div class="content" v-if="isShow">
+                <TopBackGround />
                 <div class="top">
                     <TimeLine />
                     <ToDoList />
@@ -26,13 +27,16 @@ import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
 import TimeLine from '../../components/content/timeline/TimeLine.vue';
+import TopBackGround from '../../components/content/background/TopBackGround.vue';
+
 export default defineComponent({
     name: 'Home',
     components: {
         Cube,
         Windmill,
         ToDoList,
-        TimeLine
+        TimeLine,
+        TopBackGround
     },
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
@@ -56,7 +60,7 @@ export default defineComponent({
 </script>
 
 
-<style lang="less">
+<style lang="less" scoped>
 .home {
     height: 100%;
 

@@ -10,29 +10,30 @@
 </template>
 
 <script lang="ts">
-import { reactive, toRefs, onBeforeMount, onMounted, ref, defineComponent } from "vue";
+import { reactive, onMounted, ref, defineComponent } from 'vue';
 export default defineComponent({
-    name: "Cube",
+    name: 'Cube',
     setup(props, context) {
         const data = reactive({
-            displayCube: false,
+            displayCube: false
         });
 
         const cube: any = ref(null);
         const toDisplayCube = () => {
             data.displayCube = !data.displayCube;
 
-            cube.value.className = data.displayCube ? "cube center-cube" : "cube";
+            cube.value.className = data.displayCube
+                ? 'cube center-cube'
+                : 'cube';
         };
 
-        onMounted(() => {
-        });
+        onMounted(() => {});
         return {
             data,
             toDisplayCube,
-            cube,
+            cube
         };
-    },
+    }
 });
 </script>
 
@@ -49,7 +50,7 @@ export default defineComponent({
     right: 8vw;
     bottom: 10vh;
     transform-style: preserve-3d;
-    transition: all .8s ease;
+    transition: all 0.8s ease;
     animation: toshow 20s linear infinite;
 
     @keyframes toshow {
@@ -70,7 +71,7 @@ export default defineComponent({
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: all .8s ease;
+        transition: all 0.8s ease;
 
         &.top {
             background-color: rgb(92, 235, 235);
@@ -109,12 +110,12 @@ export default defineComponent({
     right: 50% - 10px;
     width: 300px;
     height: 300px;
-    transition: all .8s ease;
+    transition: all 0.8s ease;
 
     div {
         width: 300px;
         height: 300px;
-        transition: all .8s ease;
+        transition: all 0.8s ease;
 
         &.top {
             transform: rotateX(90deg) translateZ(150px);

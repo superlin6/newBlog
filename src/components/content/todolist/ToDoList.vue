@@ -98,15 +98,6 @@ import {
     Ref
 } from 'vue';
 import { TodoItemType, FilterType } from '../../../utils/type';
-// interface TodoItemType {
-//     text: string;
-//     completed: boolean;
-// }
-// interface FilterType {
-//     all: Ref<Array<Object>>;
-//     active: Ref<Array<Object>>;
-//     completed: Ref<Array<Object>>;
-// }
 
 const storage = useLocalStorage();
 
