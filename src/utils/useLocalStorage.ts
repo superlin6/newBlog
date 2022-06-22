@@ -1,37 +1,35 @@
-function parse(str:string) {
+
+function parse(str: string | null) {
     let value
-    try {
-      value = JSON.parse(str)
-    } catch {
-      value = null
+    if (str) {
+        value = JSON.parse(str)
+    } else {
+        value = null
     }
     return value
-  }
-   
-  function stringify(obj:JSON) {
+}
+
+function stringify(obj: JSON) {
     let value
     try {
-      value = JSON.stringify(obj)
+        value = JSON.stringify(obj)
     } catch {
-      value = null
+        value = null
     }
     return value
-  }
-   
-  export default function useLocalStorage() {
-    function setItem(key:string, value:any) {
-      value = stringify(value)
-      window.localStorage.setItem(key, value)
+}
+
+export default function useLocalStorage() {
+    function setItem(key: string, value: any) {
+        value = stringify(value)
+        window.localStorage.setItem(key, value)
     }
-    function getItem(key:string) {
-      let value = window.localStorage.getItem(key)
-      if(value) {
-        value = parse(value)
-      }
-      return value
+    function getItem(key: string) {
+        let value = parse(window.localStorage.getItem(key))
+        return value
     }
     return {
-      setItem,
-      getItem
+        setItem,
+        getItem
     }
-  }
+}

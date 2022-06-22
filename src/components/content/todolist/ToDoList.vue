@@ -21,7 +21,7 @@
             <ul class="todo-list">
                 <li
                     v-for="todo in filteredTodos"
-                    :key="todo"
+                    :key="todo.text"
                     :class="{
                         editing: todo === editingTodo,
                         completed: todo.completed
@@ -94,18 +94,19 @@ import {
     computed,
     onMounted,
     onUnmounted,
-    watchEffect
+    watchEffect,
+    Ref
 } from 'vue';
-
-interface TodoItemType {
-    text: string;
-    completed: boolean;
-}
-interface FilterType {
-    all: Ref<Array<Object>>;
-    active: Ref<Array<Object>>;
-    completed: Ref<Array<Object>>;
-}
+import { TodoItemType, FilterType } from '../../../utils/type';
+// interface TodoItemType {
+//     text: string;
+//     completed: boolean;
+// }
+// interface FilterType {
+//     all: Ref<Array<Object>>;
+//     active: Ref<Array<Object>>;
+//     completed: Ref<Array<Object>>;
+// }
 
 const storage = useLocalStorage();
 
@@ -128,8 +129,8 @@ const useAdd = (todos: Ref<Array<Object>>) => {
 };
 
 // 2. 删除待办事项
-const useRemove = (todos: Ref<Array<Object>>) => {
-    const remove = (todo: Object) => {
+const useRemove = (todos: Ref<Array<TodoItemType>>) => {
+    const remove = (todo: TodoItemType) => {
         const index = todos.value.indexOf(todo);
         todos.value.splice(index, 1);
     };
@@ -148,7 +149,7 @@ const useRemove = (todos: Ref<Array<Object>>) => {
 // 3. 编辑待办事项
 const useEdit = (remove: Function) => {
     let beforeEditingText = '';
-    const editingTodo: Ref<null> = ref(null);
+    const editingTodo: Ref<null | TodoItemType> = ref(null);
 
     const editTodo = (todo: TodoItemType) => {
         beforeEditingText = todo.text;
@@ -173,7 +174,7 @@ const useEdit = (remove: Function) => {
 };
 
 // 4. 切换待办项完成状态
-const useFilter = (todos: Ref<Array<Object>>) => {
+const useFilter = (todos: Ref<Array<TodoItemType>>) => {
     const allDone = computed({
         get: () => {
             return !todos.value.filter((item: TodoItemType) => !item.completed)
@@ -187,10 +188,10 @@ const useFilter = (todos: Ref<Array<Object>>) => {
     });
 
     const filter = {
-        all: (list: Ref<Array<Object>>) => list,
-        active: (list: Ref<Array<Object>>) =>
+        all: (list: Array<TodoItemType>) => list,
+        active: (list: Array<TodoItemType>) =>
             list.filter((todo: TodoItemType) => !todo.completed),
-        completed: (list: Ref<Array<Object>>) =>
+        completed: (list: Array<TodoItemType>) =>
             list.filter((todo: TodoItemType) => todo.completed)
     };
     const type = ref('all');
@@ -233,7 +234,7 @@ const useFilter = (todos: Ref<Array<Object>>) => {
 // 5. 存储待办事项
 const useStorage = () => {
     const KEY = 'TODOKEYS';
-    const todos = ref(storage.getItem(KEY) || []);
+    const todos: Ref<Array<TodoItemType>> = ref(storage.getItem(KEY) || []);
     watchEffect(() => {
         storage.setItem(KEY, todos.value);
     });
@@ -243,7 +244,7 @@ const useStorage = () => {
 export default defineComponent({
     name: 'ToDoList',
     setup() {
-        const todos = useStorage();
+        const todos: Ref<Array<TodoItemType>> = useStorage();
         const { remove, removeCompleted } = useRemove(todos);
         return {
             remove,

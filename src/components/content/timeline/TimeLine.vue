@@ -18,8 +18,14 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, ref } from 'vue';
-const timeList: Ref<Array<Object>> = ref([
+import { Ref, ref } from 'vue';
+interface TimeListType {
+    id: number;
+    timestamp: string;
+    title: string;
+    commitInfo: string;
+}
+const timeList: Ref<Array<TimeListType>> = ref([
     {
         id: 99,
         timestamp: '2022/5/20',
