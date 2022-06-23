@@ -12,6 +12,8 @@
     left: 0;
     right: 0;
     height: 400px;
-    background: linear-gradient(rgb(41, 41, 41), rgb(70, 70, 70));
+    background: url('../../../../public/img/topBackground.jpeg') no-repeat;
+    background-size: cover;
+    background-position: 0 0;
 }
 </style>

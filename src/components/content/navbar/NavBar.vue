@@ -2,9 +2,9 @@
     <Menu
         mode="horizontal"
         theme="dark"
-        active-name="/home"
+        :active-name="data.activeIndex"
         @on-select="switchTab"
-        class="nav"
+        :class="{ nav: true, transparent: data.activeIndex === '/home' }"
         ref="menuRef"
     >
         <div class="menu-nav">
@@ -29,22 +29,15 @@ const route = useRoute();
 const router = useRouter();
 
 const data = reactive({
-    bgcStatus: true,
     activeIndex: '/'
 });
 const switchTab = (path: string) => {
     router.push(path);
 };
 const menuRef: any = ref(null);
-console.log(menuRef);
 watch(
     () => route.path,
     (cur, pre) => {
-        if (cur === '/home') {
-            menuRef.value.className = 'nav transparent';
-        } else {
-            menuRef.value.className = 'nav';
-        }
         data.activeIndex = cur;
     }
 );

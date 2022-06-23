@@ -330,7 +330,6 @@ button {
 
 .main {
     position: relative;
-    border-top: 1px solid #e6e6e6;
     .toggle-all {
         width: 1px;
         height: 1px;
