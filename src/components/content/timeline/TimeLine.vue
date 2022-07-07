@@ -1,6 +1,6 @@
 <template>
     <div class="timeline">
-        <div class="title">时间线</div>
+        <div class="title">TimeLine</div>
         <el-timeline>
             <el-timeline-item
                 v-for="item in timeList"
@@ -88,9 +88,10 @@ const timeList: Ref<Array<TimeListType>> = ref([
     padding: 8px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 8px;
+    margin: 0 auto;
 
     .title {
-        font-family: 'yuan';
+        font-family: 'ye';
         margin-bottom: 10px;
     }
 

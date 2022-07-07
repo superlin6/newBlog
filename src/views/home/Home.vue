@@ -10,10 +10,18 @@
             <div class="content" v-if="isShow">
                 <TopBackGround />
                 <div class="top">
-                    <TimeLine />
-                    <ToDoList />
+                    <div class="left">
+                        <TimeLine />
+                    </div>
+                    <div class="center">
+                        <ToDoList />
+                    </div>
+                    <div class="right">
+
+                    </div>
                 </div>
                 <div class="bottom"></div>
+                <img class="content-background" src="../../assets/img/topBackground.jpeg" v-show="showBackground" />
             </div>
         </transition>
         <Cube />
@@ -22,7 +30,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, Ref, ref } from 'vue';
 import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
@@ -41,18 +49,33 @@ export default defineComponent({
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
         const isShow: Ref<Boolean> = ref(false);
+        const showBackground: Ref<Boolean> = ref(false);
 
         const showContent = () => {
             isShow.value = true;
         };
+
+        const setScrollEvent = () => {
+            window.addEventListener('scroll', () => {
+                console.log(window.scrollY);
+            })
+        }
+
         onMounted(() => {
-            if (myname.value)
+            if (myname.value) {
                 myname.value.className =
                     'name_desc animate__animated animate__fadeInUp';
+            }
+            setScrollEvent();
+
+        });
+        onBeforeUnmount(() => {
+            window.removeEventListener('scroll', () => {});
         });
         return {
             myname,
             isShow,
+            showBackground,
             showContent
         };
     }
@@ -63,7 +86,6 @@ export default defineComponent({
 <style lang="less" scoped>
 .home {
     height: 100%;
-
     > .title {
         position: absolute;
         top: 40vh;
@@ -84,16 +106,25 @@ export default defineComponent({
     }
 
     .content {
-        height: 100%;
-        overflow: hidden;
-        margin: 20px;
-        height: calc(100% - 40px);
+        padding: 520px 20px 20px;
         .top {
             display: flex;
-            align-items: center;
+            .left, .right {
+                flex: 1;
+            }
+            .center {
+                flex: 2;
+            }
         }
         .bottom {
             display: flex;
+        }
+        &-background {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
         }
     }
 

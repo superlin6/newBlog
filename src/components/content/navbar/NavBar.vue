@@ -21,7 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick } from 'process';
 import { reactive, watch, ref, Ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -45,6 +44,7 @@ watch(
 
 <style lang="less" scoped>
 .nav {
+    background: url('../../../assets/img/topBackground.jpeg');
     &.ivu-menu {
         display: flex;
         justify-content: center;

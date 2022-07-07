@@ -1,4 +1,5 @@
 <template>
+    <h2 class="todo-title">ToDoList</h2>
     <section class="todoapp">
         <header class="header">
             <input
@@ -274,9 +275,15 @@ button {
     outline: 0;
 }
 
+.todo-title {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'yuan';
+}
+
 .todoapp {
-    display: inline-block;
-    margin-left: 80px;
+    margin: 0 auto;
     width: 440px;
     border-radius: 8px;
     background: #fff;

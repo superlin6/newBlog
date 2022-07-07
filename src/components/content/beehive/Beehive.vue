@@ -3,56 +3,56 @@
     <ul id="hexGrid">
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
       </li>
       <li class="hex" v-for="(item, index) in data.picLists" :key="index">
         <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
+          <img :src="getAssets(item.imgUrl)" alt="" />
           <h1>{{ item.title }}</h1>
           <p>{{ item.text }}</p>
         </a>
@@ -70,33 +70,39 @@ export default {
     const data = reactive({
       picLists: [
         {
-          imgUrl: "img/1.jpeg",
-          title: "title1",
-          link: "#",
-          text: "text1",
+          imgUrl: '../../../assets/img/1.jpeg',
+          title: 'title1',
+          link: '#',
+          text: 'text1',
         },
         {
-          imgUrl: "img/2.jpeg",
-          title: "title2",
-          link: "#",
-          text: "text2",
+          imgUrl: '../../../assets/img/2.jpeg',
+          title: 'title2',
+          link: '#',
+          text: 'text2',
         },
         {
-          imgUrl: "img/3.jpeg",
-          title: "title3",
-          link: "#",
-          text: "text3",
+          imgUrl: '../../../assets/img/3.jpeg',
+          title: 'title3',
+          link: '#',
+          text: 'text3',
         },
         {
-          imgUrl: "img/4.jpeg",
-          title: "title4",
-          link: "#",
-          text: "text4",
+          imgUrl: '../../../assets/img/4.jpeg',
+          title: 'title4',
+          link: '#',
+          text: 'text4',
         },
       ],
     });
+
+    const getAssets = (url: string) => {
+      return new URL(url, import.meta.url).href;
+    }
+    
     return {
       data,
+      getAssets
     };
   },
 };

@@ -46,7 +46,7 @@ export default defineComponent({
 .cube {
     width: 80px;
     height: 80px;
-    position: absolute;
+    position: fixed;
     right: 8vw;
     bottom: 10vh;
     transform-style: preserve-3d;

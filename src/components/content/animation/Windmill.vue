@@ -19,7 +19,7 @@ export default {
 
 <style lang="less">
 .windmill {
-    position: absolute;
+    position: fixed;
     left: 4vw;
     bottom: 15vh;
     margin: auto;
