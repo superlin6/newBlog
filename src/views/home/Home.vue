@@ -1,27 +1,33 @@
 <template>
     <div class="home">
-        <transition name="fade">
-            <div class="title" @click="showContent" v-if="!isShow">
+        <transition name="fadein">
+            <div class="title" @click="showContent" v-show="!isShow">
                 <h2 class="animate__animated animate__backInDown">欢迎进入</h2>
                 <h3 ref="myname" class="name_desc hide">coderlin的blog</h3>
             </div>
         </transition>
         <transition name="fadein">
-            <div class="content" v-if="isShow">
-                <TopBackGround />
+            <div class="content" v-show="isShow">
+            <transition name="fadein">
+                <TopBackGround v-show="!showBackground" />
+            </transition>
+                
                 <div class="top">
                     <div class="left">
                         <TimeLine />
                     </div>
                     <div class="center">
                         <ToDoList />
+                        <WeekTodo />
                     </div>
                     <div class="right">
 
                     </div>
                 </div>
                 <div class="bottom"></div>
-                <img class="content-background" src="../../assets/img/topBackground.jpeg" v-show="showBackground" />
+                <transition name="fadein">
+                    <img class="content-background" src="../../assets/img/topBackground.jpeg" v-show="showBackground" />
+                </transition>
             </div>
         </transition>
         <Cube />
@@ -36,6 +42,7 @@ import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
 import TimeLine from '../../components/content/timeline/TimeLine.vue';
 import TopBackGround from '../../components/content/background/TopBackGround.vue';
+import WeekTodo from '../../components/content/weektodo/WeekTodo.vue';
 
 export default defineComponent({
     name: 'Home',
@@ -44,7 +51,8 @@ export default defineComponent({
         Windmill,
         ToDoList,
         TimeLine,
-        TopBackGround
+        TopBackGround,
+        WeekTodo
     },
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
@@ -57,14 +65,13 @@ export default defineComponent({
 
         const setScrollEvent = () => {
             window.addEventListener('scroll', () => {
-                console.log(window.scrollY);
+                showBackground.value = window.scrollY >= 460;
             })
         }
 
         onMounted(() => {
             if (myname.value) {
-                myname.value.className =
-                    'name_desc animate__animated animate__fadeInUp';
+                myname.value.className = 'name_desc animate__animated animate__fadeInUp';
             }
             setScrollEvent();
 
@@ -107,6 +114,7 @@ export default defineComponent({
 
     .content {
         padding: 520px 20px 20px;
+        position: relative;
         .top {
             display: flex;
             .left, .right {
@@ -125,6 +133,7 @@ export default defineComponent({
             right: 0;
             bottom: 0;
             top: 0;
+            z-index: -1;
         }
     }
 
@@ -137,17 +146,17 @@ export default defineComponent({
     .fade-leave-to {
         opacity: 0;
     }
-
+    // enter enter-active enter-to leave leave-active leave-to 
     .fadein-enter-active,
     .fadein-leave-active {
         transition: opacity 1s;
     }
 
-    .fadein-enter-from {
+    .fadein-enter-from,
+    .fadein-leave-to {
         opacity: 0;
     }
-
-    .fadein-leave-to {
+    .fadein-leave-from {
         opacity: 1;
     }
 }

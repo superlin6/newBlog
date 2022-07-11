@@ -82,7 +82,7 @@ const timeList: Ref<Array<TimeListType>> = ref([
     }
 ]);
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .timeline {
     width: 300px;
     padding: 8px;
