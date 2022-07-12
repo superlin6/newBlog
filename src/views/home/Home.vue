@@ -63,7 +63,7 @@ export default defineComponent({
         const isShow: Ref<Boolean> = ref(false);
         const showBackground: Ref<Boolean> = ref(false);
         const mainStore = useMainStore();
-        const { todolistTitle: todolistTitleColor } = storeToRefs(mainStore)
+        const titleDefaultColor = mainStore.todolistTitle;
         // 内容区
         const showContent = () => {
             isShow.value = true;
@@ -72,8 +72,7 @@ export default defineComponent({
         const setScrollEvent = () => {
             window.addEventListener('scroll', () => {
                 showBackground.value = window.scrollY >= 460;
-                console.log('todolist', mainStore.todolistTitle)
-                mainStore.setTitle(window.scrollY >= 460 ? '#fff' : todolistTitleColor.value)
+                mainStore.setTitle(window.scrollY >= 460 ? '#fff' : titleDefaultColor)
             })
         }
         

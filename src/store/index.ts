@@ -8,12 +8,14 @@ export const useMainStore = defineStore('main', {
             todolistTitle: variables.todolistTitle
         }
     },
-    getters: {
-        timelineTitle: (state) => state.timelineTitle,
-        todolistTitle: (state) => state.todolistTitle
-    },
+    // getters: {
+    //     timelineTitle: (state) => state.timelineTitle,
+    //     todolistTitle: (state) => state.todolistTitle
+    // },
     actions: {
         setTitle(varColor: string) {
+            console.log('this', this, this.timelineTitle, this.todolistTitle)
+            console.log('var', varColor)
             this.timelineTitle = varColor
             this.todolistTitle = varColor
         }

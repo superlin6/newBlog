@@ -1,6 +1,6 @@
 <template>
     <div class="timeline">
-        <div class="title">TimeLine</div>
+        <div class="title" :style="{ color: mainStore.timelineTitle }">TimeLine</div>
         <el-timeline>
             <el-timeline-item
                 v-for="item in timeList"
@@ -19,12 +19,14 @@
 
 <script setup lang="ts">
 import { Ref, ref } from 'vue';
+import { useMainStore } from '../../../store';
 interface TimeListType {
     id: number;
     timestamp: string;
     title: string;
     commitInfo: string;
 }
+
 const timeList: Ref<Array<TimeListType>> = ref([
     {
         id: 99,
@@ -81,6 +83,8 @@ const timeList: Ref<Array<TimeListType>> = ref([
         commitInfo: 'coderlin committed'
     }
 ]);
+const mainStore = useMainStore();
+
 </script>
 <style lang="less" scoped>
 .timeline {

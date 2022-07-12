@@ -1,5 +1,5 @@
 <template>
-    <div class="week-todo">
+    <div class="week-todo" :style="{ color: mainStore.weektodoColor }">
         <div class="title">
             今天星期{{ dayToChiComputed }}
         </div>
