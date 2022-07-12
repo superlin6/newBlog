@@ -1,5 +1,5 @@
 <template>
-    <h2 class="todo-title">ToDoList</h2>
+    <h2 class="todo-title" :style="{color: titleColor}">ToDoList</h2>
     <section class="todoapp">
         <header class="header">
             <input
@@ -99,7 +99,6 @@ import {
     Ref
 } from 'vue';
 import { TodoItemType, FilterType } from '../../../utils/type';
-
 const storage = useLocalStorage();
 
 // 1. 添加待办事项
@@ -235,6 +234,12 @@ const useStorage = () => {
 
 export default defineComponent({
     name: 'ToDoList',
+    props: {
+        titleColor: {
+            type: String,
+            default: ''
+        }
+    },
     setup() {
         const todos: Ref<Array<TodoItemType>> = useStorage();
         const { remove, removeCompleted } = useRemove(todos);

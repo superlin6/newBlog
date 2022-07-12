@@ -11,7 +11,7 @@
 <style lang="less" scoped>
 .top-background {
     position: absolute;
-    top: -60px;
+    top: -460px;
     left: 0;
     right: 0;
     font-family: 'yuan';

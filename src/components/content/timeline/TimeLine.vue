@@ -86,9 +86,10 @@ const timeList: Ref<Array<TimeListType>> = ref([
 .timeline {
     width: 300px;
     padding: 8px;
+    margin-top: 79px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 8px;
-    margin: 0 auto;
+    margin: 79px auto 0;
 
     .title {
         font-family: 'ye';

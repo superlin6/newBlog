@@ -9,15 +9,15 @@
         <transition name="fadein">
             <div class="content" v-show="isShow">
             <transition name="fadein">
-                <TopBackGround v-show="!showBackground" />
+                <TopBackground v-show="!showBackground" />
             </transition>
                 
                 <div class="top">
                     <div class="left">
-                        <TimeLine />
+                        <TimeLine :titleColor="mainStore.timelineTitle" />
                     </div>
                     <div class="center">
-                        <ToDoList />
+                        <ToDoList :titleColor="mainStore.todolistTitle"  />
                         <WeekTodo />
                     </div>
                     <div class="right">
@@ -26,7 +26,7 @@
                 </div>
                 <div class="bottom"></div>
                 <transition name="fadein">
-                    <img class="content-background" src="../../assets/img/topBackground.jpeg" v-show="showBackground" />
+                    <ContentBackground v-show="showBackground" />
                 </transition>
             </div>
         </transition>
@@ -37,37 +37,46 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, onBeforeUnmount, Ref, ref } from 'vue';
+import { useMainStore } from '../../store';
+import { storeToRefs } from 'pinia';
 import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
 import TimeLine from '../../components/content/timeline/TimeLine.vue';
-import TopBackGround from '../../components/content/background/TopBackGround.vue';
+import TopBackground from '../../components/content/background/TopBackground.vue';
 import WeekTodo from '../../components/content/weektodo/WeekTodo.vue';
+import ContentBackground from '../../components/content/background/ContentBackground.vue';
 
 export default defineComponent({
     name: 'Home',
     components: {
-        Cube,
-        Windmill,
-        ToDoList,
-        TimeLine,
-        TopBackGround,
-        WeekTodo
-    },
+    Cube,
+    Windmill,
+    ToDoList,
+    TimeLine,
+    TopBackground,
+    WeekTodo,
+    ContentBackground
+},
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
         const isShow: Ref<Boolean> = ref(false);
         const showBackground: Ref<Boolean> = ref(false);
-
+        const mainStore = useMainStore();
+        const { todolistTitle: todolistTitleColor } = storeToRefs(mainStore)
+        // 内容区
         const showContent = () => {
             isShow.value = true;
         };
-
+        // 滚动监听
         const setScrollEvent = () => {
             window.addEventListener('scroll', () => {
                 showBackground.value = window.scrollY >= 460;
+                console.log('todolist', mainStore.todolistTitle)
+                mainStore.setTitle(window.scrollY >= 460 ? '#fff' : todolistTitleColor.value)
             })
         }
+        
 
         onMounted(() => {
             if (myname.value) {
@@ -83,6 +92,7 @@ export default defineComponent({
             myname,
             isShow,
             showBackground,
+            mainStore,
             showContent
         };
     }
@@ -113,7 +123,9 @@ export default defineComponent({
     }
 
     .content {
-        padding: 520px 20px 20px;
+        margin-top: 400px;
+        padding: 60px 20px 20px;
+        border: none;
         position: relative;
         .top {
             display: flex;
@@ -127,14 +139,7 @@ export default defineComponent({
         .bottom {
             display: flex;
         }
-        &-background {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            top: 0;
-            z-index: -1;
-        }
+        
     }
 
     .fade-enter-active,
