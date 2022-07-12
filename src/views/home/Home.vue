@@ -14,10 +14,10 @@
                 
                 <div class="top">
                     <div class="left">
-                        <TimeLine :titleColor="mainStore.timelineTitle" />
+                        <TimeLine />
                     </div>
                     <div class="center">
-                        <ToDoList :titleColor="mainStore.todolistTitle"  />
+                        <ToDoList  />
                         <WeekTodo />
                     </div>
                     <div class="right">
@@ -63,7 +63,7 @@ export default defineComponent({
         const isShow: Ref<Boolean> = ref(false);
         const showBackground: Ref<Boolean> = ref(false);
         const mainStore = useMainStore();
-        const titleDefaultColor = mainStore.todolistTitle;
+        const titleDefaultColor = mainStore.todolistColor;
         // 内容区
         const showContent = () => {
             isShow.value = true;

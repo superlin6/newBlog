@@ -1,6 +1,6 @@
 <template>
     <div class="timeline">
-        <div class="title" :style="{ color: mainStore.timelineTitle }">TimeLine</div>
+        <div class="title" :style="{ color: mainStore.timelineColor }">TimeLine</div>
         <el-timeline>
             <el-timeline-item
                 v-for="item in timeList"

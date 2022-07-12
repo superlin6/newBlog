@@ -1,5 +1,5 @@
 <template>
-    <h2 class="todo-title" :style="{ color: mainStore.todolistTitle }">ToDoList</h2>
+    <h2 class="todo-title" :style="{ color: mainStore.todolistColor }">ToDoList</h2>
     <section class="todoapp">
         <header class="header">
             <input
