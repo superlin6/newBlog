@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import { DAY_TO_CHINESE, DAY_TO_CHINESE_INTERFACE } from '../../../utils/constant'
 import { computed, reactive, ref, Ref } from 'vue';
+import { useMainStore } from '../../../store';
     const curDay: number = new Date().getDay(); // 0-6
     const todoList: Ref<Array<Array<string>>> = ref([
         ['一道leetcode', '一集Vue3 + ts', '周一总结', '原神每日任务'],
@@ -28,6 +29,8 @@ import { computed, reactive, ref, Ref } from 'vue';
         ['一道leetcode', '一集Vue3 + ts', '周六放假', '原神每日任务'],
         ['一道leetcode', '一集Vue3 + ts', '周日放假', '原神每日任务']
     ])
+    const mainStore = useMainStore()
+
     const dayToChiComputed = computed(() => DAY_TO_CHINESE[curDay as unknown as keyof DAY_TO_CHINESE_INTERFACE] )
 </script>
 
