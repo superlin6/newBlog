@@ -27,7 +27,7 @@ interface TimeListType {
     commitInfo: string;
 }
 
-const timeList: Ref<Array<TimeListType>> = ref([
+const timeList: Ref<TimeListType[]> = ref([
     {
         id: 99,
         timestamp: '2022/5/20',
@@ -93,7 +93,7 @@ const mainStore = useMainStore();
     margin-top: 79px;
     border: 1px solid rgb(240, 240, 240);
     border-radius: 8px;
-    margin: 79px auto 0;
+    margin: 0 auto;
 
     .title {
         font-family: 'ye';

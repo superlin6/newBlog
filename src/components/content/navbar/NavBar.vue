@@ -34,17 +34,17 @@ const switchTab = (path: string) => {
     router.push(path);
 };
 const menuRef: any = ref(null);
-watch(
-    () => route.path,
-    (cur, pre) => {
-        data.activeIndex = cur;
-    }
+watch(() => route.path,
+(cur, pre) => {
+    console.log('11', cur)
+    data.activeIndex = cur;
+}
 );
 </script>
 
 <style lang="less" scoped>
 .nav {
-    background: url('../../../assets/img/topBackground.jpeg');
+    background: url('../../../assets/img/content-background.jpeg');
     &.ivu-menu {
         display: flex;
         justify-content: center;

@@ -17,11 +17,12 @@
                         <TimeLine />
                     </div>
                     <div class="center">
-                        <ToDoList  />
+                        <ToDoList />
                         <WeekTodo />
                     </div>
                     <div class="right">
-
+                        <CircleChart />
+                        <Progress />
                     </div>
                 </div>
                 <div class="bottom"></div>
@@ -38,7 +39,6 @@
 <script lang="ts">
 import { defineComponent, onMounted, onBeforeUnmount, Ref, ref } from 'vue';
 import { useMainStore } from '../../store';
-import { storeToRefs } from 'pinia';
 import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
@@ -46,6 +46,9 @@ import TimeLine from '../../components/content/timeline/TimeLine.vue';
 import TopBackground from '../../components/content/background/TopBackground.vue';
 import WeekTodo from '../../components/content/weektodo/WeekTodo.vue';
 import ContentBackground from '../../components/content/background/ContentBackground.vue';
+import Progress from '../../components/content/progress/Progress.vue';
+import CircleChart from '../../components/content/circlechart/CircleChart.vue';
+
 
 export default defineComponent({
     name: 'Home',
@@ -56,7 +59,9 @@ export default defineComponent({
     TimeLine,
     TopBackground,
     WeekTodo,
-    ContentBackground
+    ContentBackground,
+    Progress,
+    CircleChart
 },
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);
@@ -64,6 +69,7 @@ export default defineComponent({
         const showBackground: Ref<Boolean> = ref(false);
         const mainStore = useMainStore();
         const titleDefaultColor = mainStore.todolistColor;
+
         // 内容区
         const showContent = () => {
             isShow.value = true;
@@ -87,6 +93,7 @@ export default defineComponent({
         onBeforeUnmount(() => {
             window.removeEventListener('scroll', () => {});
         });
+
         return {
             myname,
             isShow,
@@ -123,16 +130,28 @@ export default defineComponent({
 
     .content {
         margin-top: 400px;
-        padding: 60px 20px 20px;
+        padding: 100px 20px 20px;
         border: none;
         position: relative;
         .top {
             display: flex;
             .left, .right {
                 flex: 1;
+                padding-top: 79px;
             }
             .center {
                 flex: 2;
+            }
+            .right {
+                .el-calendar {   
+                    width: 400px;
+                    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+                    border-radius: 8px;
+                    ::v-deep .el-calendar-table .el-calendar-day{
+                        // width: 40px;
+                        height: 38px;
+                    }
+                }
             }
         }
         .bottom {
