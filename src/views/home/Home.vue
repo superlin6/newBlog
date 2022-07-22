@@ -8,10 +8,9 @@
         </transition>
         <transition name="fadein">
             <div class="content" v-show="isShow">
-            <transition name="fadein">
-                <TopBackground v-show="!showBackground" />
-            </transition>
-                
+                <transition name="fadein">
+                    <TopBackground v-show="!showBackground" />
+                </transition>
                 <div class="top">
                     <div class="left">
                         <TimeLine />
@@ -19,10 +18,12 @@
                     <div class="center">
                         <ToDoList />
                         <WeekTodo />
+                        <LineChart />
                     </div>
                     <div class="right">
                         <CircleChart />
                         <Progress />
+                        
                     </div>
                 </div>
                 <div class="bottom"></div>
@@ -48,6 +49,7 @@ import WeekTodo from '../../components/content/weektodo/WeekTodo.vue';
 import ContentBackground from '../../components/content/background/ContentBackground.vue';
 import Progress from '../../components/content/progress/Progress.vue';
 import CircleChart from '../../components/content/circlechart/CircleChart.vue';
+import LineChart from '../../components/content/linechart/LineChart.vue';
 
 
 export default defineComponent({
@@ -61,7 +63,8 @@ export default defineComponent({
     WeekTodo,
     ContentBackground,
     Progress,
-    CircleChart
+    CircleChart,
+    LineChart
 },
     setup() {
         const myname: Ref<HTMLElement | null> = ref(null);

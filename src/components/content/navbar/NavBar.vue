@@ -36,7 +36,6 @@ const switchTab = (path: string) => {
 const menuRef: any = ref(null);
 watch(() => route.path,
 (cur, pre) => {
-    console.log('11', cur)
     data.activeIndex = cur;
 }
 );

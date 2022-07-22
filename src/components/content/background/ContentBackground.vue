@@ -13,6 +13,7 @@
     bottom: 0;
     top: 0;
     z-index: -1;
-    background: url('../../../assets/img/content-background.jpeg')
+    background: url('../../../assets/img/content-background.jpeg') no-repeat;
+    background-size: 100% 100%;
 }
 </style>

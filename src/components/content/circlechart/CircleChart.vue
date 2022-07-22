@@ -1,6 +1,6 @@
 <template>
     <div class="circle-chart">
-        <div id="circle-chart-content"></div>
+        <div id="circle-chart-content" />
     </div>
 </template>
 
