@@ -150,7 +150,7 @@ export default defineComponent({
                     width: 400px;
                     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
                     border-radius: 8px;
-                    ::v-deep .el-calendar-table .el-calendar-day{
+                    :deep(.el-calendar-table) .el-calendar-day{
                         // width: 40px;
                         height: 38px;
                     }

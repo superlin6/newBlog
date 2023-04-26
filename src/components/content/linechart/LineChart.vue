@@ -59,39 +59,39 @@ onMounted(() => {
             }
         },
         series: [
-            // {
-            //     // 阴影bar
-            //     name: 'back',
-            //     type: 'bar',
-            //     data: data2,
-            //     z: 1,
-            //     itemStyle: {
-            //         opacity: 0.4,
-            //         borderRadius: 5,
-            //         shadowBlur: 3,
-            //         shadowColor: '#111',
-            //     }
-            // }, 
-            // {
-            //     // 遮罩层
-            //     name: 'Simulate Shadow',
-            //     type: 'line',
-            //     data,
-            //     z: 2,
-            //     showSymbol: false,
-            //     animationDelay: 0,
-            //     animationEasing: 'linear',
-            //     animationDuration: 1400,
-            //     lineStyle: {
-            //         color: 'transparent'
-            //     },
-            //     // 遮罩层颜色
-            //     areaStyle: {
-            //         color: '#08263a',
-            //         shadowBlur: 50,
-            //         shadowColor: '#000'
-            //     }
-            // },
+            {
+                // 阴影bar
+                name: 'back',
+                type: 'bar',
+                data: data2,
+                z: 1,
+                itemStyle: {
+                    opacity: 0.4,
+                    borderRadius: 5,
+                    shadowBlur: 3,
+                    shadowColor: '#111',
+                }
+            }, 
+            {
+                // 遮罩层
+                name: 'Simulate Shadow',
+                type: 'line',
+                data,
+                z: 2,
+                showSymbol: false,
+                animationDelay: 0,
+                animationEasing: 'linear',
+                animationDuration: 1400,
+                lineStyle: {
+                    color: 'transparent'
+                },
+                // 遮罩层颜色
+                areaStyle: {
+                    color: '#08263a',
+                    shadowBlur: 50,
+                    shadowColor: '#000'
+                }
+            },
             {
                 name: 'front',
                 type: 'bar',
