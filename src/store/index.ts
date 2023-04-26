@@ -18,3 +18,16 @@ export const useMainStore = defineStore('main', {
         }
     }
 })
+
+export const useLineChartStore = defineStore('lineChart', {
+    state: () => {
+        return {
+            lineChartVisible: false
+        }
+    },
+    actions: {
+        setLineChartVisible(visible: boolean) {
+            this.lineChartVisible = visible
+        }
+    }
+})

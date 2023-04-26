@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, onBeforeUnmount, Ref, ref } from 'vue';
-import { useMainStore } from '../../store';
+import { useMainStore, useLineChartStore } from '../../store';
 import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
 import ToDoList from '../../components/content/todolist/ToDoList.vue';
@@ -71,11 +71,15 @@ export default defineComponent({
         const isShow: Ref<Boolean> = ref(false);
         const showBackground: Ref<Boolean> = ref(false);
         const mainStore = useMainStore();
+        const lineChartStore = useLineChartStore()
+
         const titleDefaultColor = mainStore.todolistColor;
+
 
         // 内容区
         const showContent = () => {
             isShow.value = true;
+            lineChartStore.setLineChartVisible(true);
         };
         // 滚动监听
         const setScrollEvent = () => {

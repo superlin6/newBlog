@@ -16,10 +16,11 @@ import {
     TooltipComponentOption,
     GridComponent,
     GridComponentOption,
+    VisualMapComponent,
+    VisualMapComponentOption,
     // 数据集组件
     DatasetComponent,
     DatasetComponentOption,
-    
     // 内置数据转换器组件 (filter, sort)
     TransformComponent
 } from 'echarts/components';
@@ -35,6 +36,7 @@ export type ECOption = echarts.ComposeOption<
     | GridComponentOption
     | DatasetComponentOption
     | PieSeriesOption
+    | VisualMapComponentOption
 >;
 
 // 注册必须的组件
@@ -49,7 +51,8 @@ echarts.use([
     LineChart,
     LabelLayout,
     UniversalTransition,
-    CanvasRenderer
+    CanvasRenderer,
+    VisualMapComponent,
 ]);
 
 export default echarts

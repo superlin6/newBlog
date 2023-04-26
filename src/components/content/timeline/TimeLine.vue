@@ -96,7 +96,7 @@ const mainStore = useMainStore();
     margin: 0 auto;
 
     .title {
-        font-family: 'ye';
+        font-family: 'yuan';
         margin-bottom: 10px;
     }
 
