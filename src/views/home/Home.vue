@@ -3,7 +3,7 @@
         <transition name="fadein">
             <div class="title" @click="showContent" v-show="!isShow">
                 <h2 class="animate__animated animate__backInDown">欢迎进入</h2>
-                <h3 ref="myname" class="name_desc hide">coderlin的blog</h3>
+                <h3 class="animate__animated animate__fadeInUp">coderlin的blog</h3>
             </div>
         </transition>
         <transition name="fadein">
@@ -67,7 +67,6 @@ export default defineComponent({
     LineChart
 },
     setup() {
-        const myname: Ref<HTMLElement | null> = ref(null)
         const isShow: Ref<Boolean> = ref(false)
         const showBackground: Ref<Boolean> = ref(false)
         const mainStore = useMainStore()
@@ -89,20 +88,15 @@ export default defineComponent({
             })
         }
         
-
         onMounted(() => {
-            if (myname.value) {
-                myname.value.className = 'name_desc animate__animated animate__fadeInUp'
-            }
             setScrollEvent()
-
         });
+
         onBeforeUnmount(() => {
             window.removeEventListener('scroll', () => {})
         });
 
         return {
-            myname,
             isShow,
             showBackground,
             mainStore,
@@ -137,7 +131,7 @@ export default defineComponent({
 
     .content {
         margin-top: 400px;
-        padding: 100px 20px 20px;
+        padding: 100px 20px 50px;
         border: none;
         position: relative;
         .top {

@@ -1,110 +1,107 @@
 <template>
-  <div class="beehive">
-    <ul id="hexGrid">
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-      <li class="hex" v-for="(item, index) in data.picLists" :key="index">
-        <a class="hexIn" :href="item.link">
-          <img :src="item.imgUrl" alt="" />
-          <h1>{{ item.title }}</h1>
-          <p>{{ item.text }}</p>
-        </a>
-      </li>
-    </ul>
-  </div>
+	<div class="beehive">
+		<ul id="hexGrid">
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy >
+						<template #placeholder>
+							<el-image :src="item.imgUrl" />
+						</template>
+					</el-image>
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+			<li class="hex" v-for="(item, index) in data.picLists" :key="index">
+				<a class="hexIn" :href="item.link">
+					<el-image :src="item.imgUrl" alt="" lazy />
+					<h1>{{ item.title }}</h1>
+					<p>{{ item.text }}</p>
+				</a>
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script lang="ts">
 import { reactive } from "@vue/reactivity";
 export default {
-  setup() {
-    // console.log(props);
+	setup() {
+		const data = reactive({
+			picLists: [
+				{
+					imgUrl: '/img/1.jpeg',
+					title: 'title1',
+					link: '#',
+					text: 'text1',
+				},
+				{
+					imgUrl: '/img/2.jpeg',
+					title: 'title2',
+					link: '#',
+					text: 'text2',
+				},
+				{
+					imgUrl: '/img/3.jpeg',
+					title: 'title3',
+					link: '#',
+					text: 'text3',
+				},
+				{
+					imgUrl: '/img/4.jpeg',
+					title: 'title4',
+					link: '#',
+					text: 'text4',
+				},
+			],
+		});
 
-    const data = reactive({
-      picLists: [
-        {
-          imgUrl: '/img/1.jpeg',
-          title: 'title1',
-          link: '#',
-          text: 'text1',
-        },
-        {
-          imgUrl: '/img/2.jpeg',
-          title: 'title2',
-          link: '#',
-          text: 'text2',
-        },
-        {
-          imgUrl: '/img/3.jpeg',
-          title: 'title3',
-          link: '#',
-          text: 'text3',
-        },
-        {
-          imgUrl: '/img/4.jpeg',
-          title: 'title4',
-          link: '#',
-          text: 'text4',
-        },
-      ],
-    });
-
-    // const getAssets = (url: string) => {
-    //   return new URL(url, import.meta.url).href;
-    // }
-    
-    return {
-      data,
-      // getAssets
-    };
-  },
+		return {
+			data,
+		};
+	},
 };
 </script>
 
@@ -139,14 +136,18 @@ body {
     float: left;
     overflow: hidden;
     visibility: hidden;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
+
+    /* fix for jagged edges in FF on hover transition */
     transform: rotate(-60deg) skewY(30deg) translateZ(-1px);
 }
 
 .hex * {
     position: absolute;
     visibility: visible;
-    outline: 1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    outline: 1px solid transparent;
+
+    /* fix for jagged edges in FF on hover transition */
 }
 
 .hexIn {
@@ -160,7 +161,8 @@ body {
 }
 
 /*** HEX CONTENT **********************************************************************/
-.hex img {
+.hex .el-image,
+:deep(.hex) .el-image img {
     left: -100%;
     right: -100%;
     width: auto;
@@ -168,10 +170,33 @@ body {
     margin: 0 auto;
 }
 
+.demo-image__placeholder.image-slot {
+    position: relative;
+    z-index: 200;
+    left: -100%;
+    right: -100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: red;
+    color: var(--el-text-color-secondary);
+    font-size: 14px;
+}
+
+.demo-image__placeholder .dot {
+    animation: dot 2s infinite steps(3, start);
+    overflow: hidden;
+}
+
 .hex h1,
 .hex p {
     width: 102%;
-    left: -1%; /* prevent line on the right where background doesn't cover image */
+    left: -1%;
+
+    /* prevent line on the right where background doesn't cover image */
     padding: 5%;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 80%);
@@ -216,8 +241,12 @@ body {
 @media (min-width: 1201px) {
     /* <- 5-4  hexagons per row */
     .hex {
-        width: 19.2%; /* = (100-4) / 5 */
-        padding-bottom: 22.17%; /* =  width / sin(60deg) */
+        width: 19.2%;
+
+        /* = (100-4) / 5 */
+        padding-bottom: 22.17%;
+
+        /* =  width / sin(60deg) */
     }
 
     .hex:nth-child(9n + 6),
@@ -261,8 +290,12 @@ body {
 @media (max-width: 1200px) and (min-width: 901px) {
     /* <- 4-3  hexagons per row */
     .hex {
-        width: 24.25%; /* = (100-3) / 4 */
-        padding-bottom: 28.001%; /* =  width / sin(60deg) */
+        width: 24.25%;
+
+        /* = (100-3) / 4 */
+        padding-bottom: 28.001%;
+
+        /* =  width / sin(60deg) */
     }
 
     .hex:nth-child(7n + 5),
@@ -302,8 +335,12 @@ body {
 @media (max-width: 900px) and (min-width: 601px) {
     /* <- 3-2  hexagons per row */
     .hex {
-        width: 32.666%; /* = (100-2) / 3 */
-        padding-bottom: 37.72%; /* =  width / sin(60) */
+        width: 32.666%;
+
+        /* = (100-2) / 3 */
+        padding-bottom: 37.72%;
+
+        /* =  width / sin(60) */
     }
 
     .hex:nth-child(5n + 4),
@@ -336,8 +373,12 @@ body {
 @media (max-width: 600px) {
     /* <- 2-1  hexagons per row */
     .hex {
-        width: 49.5%; /* = (100-1) / 2 */
-        padding-bottom: 57.158%; /* =  width / sin(60) */
+        width: 49.5%;
+
+        /* = (100-1) / 2 */
+        padding-bottom: 57.158%;
+
+        /* =  width / sin(60) */
     }
 
     .hex:nth-child(3n + 3) {
