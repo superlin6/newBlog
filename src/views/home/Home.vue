@@ -67,38 +67,38 @@ export default defineComponent({
     LineChart
 },
     setup() {
-        const myname: Ref<HTMLElement | null> = ref(null);
-        const isShow: Ref<Boolean> = ref(false);
-        const showBackground: Ref<Boolean> = ref(false);
-        const mainStore = useMainStore();
+        const myname: Ref<HTMLElement | null> = ref(null)
+        const isShow: Ref<Boolean> = ref(false)
+        const showBackground: Ref<Boolean> = ref(false)
+        const mainStore = useMainStore()
         const lineChartStore = useLineChartStore()
 
-        const titleDefaultColor = mainStore.todolistColor;
+        const titleDefaultColor = mainStore.todolistColor
 
 
         // 内容区
         const showContent = () => {
-            isShow.value = true;
-            lineChartStore.setLineChartVisible(true);
+            isShow.value = true
         };
         // 滚动监听
         const setScrollEvent = () => {
             window.addEventListener('scroll', () => {
-                showBackground.value = window.scrollY >= 460;
+                showBackground.value = window.scrollY >= 460
                 mainStore.setTitle(window.scrollY >= 460 ? '#fff' : titleDefaultColor)
+                lineChartStore.setLineChartVisible(true)
             })
         }
         
 
         onMounted(() => {
             if (myname.value) {
-                myname.value.className = 'name_desc animate__animated animate__fadeInUp';
+                myname.value.className = 'name_desc animate__animated animate__fadeInUp'
             }
-            setScrollEvent();
+            setScrollEvent()
 
         });
         onBeforeUnmount(() => {
-            window.removeEventListener('scroll', () => {});
+            window.removeEventListener('scroll', () => {})
         });
 
         return {
