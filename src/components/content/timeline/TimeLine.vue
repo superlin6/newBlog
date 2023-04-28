@@ -20,6 +20,9 @@
 <script setup lang="ts">
 import { Ref, ref } from 'vue';
 import { useMainStore } from '../../../store';
+import { AxisPointerComponent } from 'echarts/components';
+import request from '../../../utils/request'
+
 interface TimeListType {
     id: number;
     timestamp: string;
@@ -83,7 +86,18 @@ const timeList: Ref<TimeListType[]> = ref([
         commitInfo: 'coderlin committed'
     }
 ]);
+
+const githubCommitAPI = '/api/repos/superlin6/newBlog/commits'
 const mainStore = useMainStore();
+
+request.get(githubCommitAPI).then(res => {
+    timeList.value = res.map(item => ({
+        id: item?.node_id, 
+        timeStamp: item?.commit?.author?.date,
+        title: item?.commit?.message,
+        commitInfo: item?.commit?.author?.name + ' committed'
+    }))
+})
 
 </script>
 <style lang="less" scoped>
