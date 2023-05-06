@@ -25,7 +25,7 @@ import { useMainStore } from '../../../store';
         ['一道leetcode', 'PS5', '周二总结', '钢琴'],
         ['一道leetcode', 'PS5', '周三总结', '钢琴'],
         ['一道leetcode', 'PS5', '周四总结', '钢琴'],
-        ['一道leetcode', 'PS5', '周五总结', '钢琴','钢琴'],
+        ['一道leetcode', 'PS5', '周五总结', ,'钢琴'],
         ['一道leetcode', 'PS5', '周六放假', '出去耍', '钢琴'],
         ['一道leetcode', 'PS5', '周日放假', '钢琴']
     ])
