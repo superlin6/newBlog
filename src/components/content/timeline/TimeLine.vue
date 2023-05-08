@@ -1,7 +1,13 @@
 <template>
     <div class="timeline">
         <div class="title" :style="{ color: mainStore.timelineColor }">TimeLine</div>
-        <el-timeline>
+        <el-skeleton 
+            v-if="loading"
+            :rows="10"
+            animated
+            :throttle="100"
+        />
+        <el-timeline v-else>
             <el-timeline-item
                 v-for="item in timeList"
                 :key="item.id"
@@ -20,7 +26,7 @@
 <script setup lang="ts">
 import { Ref, ref } from 'vue';
 import { useMainStore } from '../../../store';
-import { AxisPointerComponent } from 'echarts/components';
+import { ElMessage } from 'element-plus';
 import request from '../../../utils/request'
 
 interface TimeListType {
@@ -29,75 +35,32 @@ interface TimeListType {
     title: string;
     commitInfo: string;
 }
+const loading = ref(false)
+// const timeList: Ref<TimeListType[]> = ref([]);
 
-const timeList: Ref<TimeListType[]> = ref([
-    {
-        id: 99,
-        timestamp: '2022/5/20',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 98,
-        timestamp: '2022/5/19',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 97,
-        timestamp: '2022/5/18',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 96,
-        timestamp: '2022/5/17',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 95,
-        timestamp: '2022/5/16',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 94,
-        timestamp: '2022/5/16',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 93,
-        timestamp: '2022/5/16',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 92,
-        timestamp: '2022/5/16',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    },
-    {
-        id: 91,
-        timestamp: '2022/5/16',
-        title: 'update index page',
-        commitInfo: 'coderlin committed'
-    }
-]);
+const timeList: Ref<TimeListType[]> = ref([]);
 
 const githubCommitAPI = '/api/repos/superlin6/newBlog/commits'
 const mainStore = useMainStore();
 
-request.get(githubCommitAPI).then(res => {
-    timeList.value = res.map(item => ({
-        id: item?.node_id, 
-        timeStamp: item?.commit?.author?.date,
-        title: item?.commit?.message,
-        commitInfo: item?.commit?.author?.name + ' committed'
-    }))
-})
+const getGithubCommitData = () => {
+    loading.value = true
+    request.get(githubCommitAPI).then(res => {
+        timeList.value = res.map(item => ({
+            id: item?.node_id, 
+            timeStamp: item?.commit?.author?.date,
+            title: item?.commit?.message,
+            commitInfo: item?.commit?.author?.name + ' committed'
+        }))
+
+        loading.value = false
+
+    }).catch((err) => {
+        ElMessage.error(err)
+    })
+}
+
+getGithubCommitData()
 
 </script>
 <style lang="less" scoped>
