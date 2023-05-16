@@ -114,8 +114,8 @@ watch(() => lineChartStore.lineChartVisible, (cur, pre) => {
 .line-chart {
     #line-chart-content {
         margin: 0 auto;
-        width: 500px;
-        height: 300px;
+        width: 100%;
+        height: 600px;
         margin-bottom: 30px;
     }
 }

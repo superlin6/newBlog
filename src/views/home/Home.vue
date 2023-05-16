@@ -18,7 +18,6 @@
                     <div class="center">
                         <ToDoList />
                         <WeekTodo />
-                        <LineChart />
                     </div>
                     <div class="right">
                         <CircleChart />
@@ -26,7 +25,9 @@
                         
                     </div>
                 </div>
-                <div class="bottom"></div>
+                <div class="bottom">
+                    <LineChart />
+                </div>
                 <transition name="fadein">
                     <ContentBackground v-show="showBackground" />
                 </transition>
@@ -78,6 +79,7 @@ export default defineComponent({
         // 内容区
         const showContent = () => {
             isShow.value = true
+            mainStore.setTopBarVisible(true)
         };
         // 滚动监听
         const setScrollEvent = () => {
@@ -156,7 +158,6 @@ export default defineComponent({
             }
         }
         .bottom {
-            display: flex;
         }
         
     }

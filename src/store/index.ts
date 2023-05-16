@@ -6,7 +6,8 @@ export const useMainStore = defineStore('main', {
             timelineColor: variables.timelineColor,
             todolistColor: variables.todolistColor,
             weektodoColor: variables.weektodoColor,
-            circleChartColor: variables.circleChartColor
+            circleChartColor: variables.circleChartColor,
+            topBarVisible: false,
         }
     },
     actions: {
@@ -15,6 +16,10 @@ export const useMainStore = defineStore('main', {
             this.todolistColor = varColor
             this.weektodoColor = varColor
             this.circleChartColor =  varColor
+        },
+
+        setTopBarVisible(visible: boolean) {
+            this.topBarVisible = visible
         }
     }
 })
