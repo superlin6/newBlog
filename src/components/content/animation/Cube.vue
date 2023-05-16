@@ -1,11 +1,9 @@
 <template>
     <div ref="cube" class="cube" @click="toDisplayCube">
-        <div class="top">click me</div>
-        <div class="right">click me</div>
-        <div class="bottom">click me</div>
-        <div class="left">click me</div>
-        <div class="ahead">click me</div>
-        <div class="rear">click me</div>
+        
+        <div v-for="item in data.cubeMapArr" :class="item.class">
+            <img :src="item.src" alt="">
+        </div>
     </div>
 </template>
 
@@ -15,7 +13,15 @@ export default defineComponent({
     name: 'Cube',
     setup(props, context) {
         const data = reactive({
-            displayCube: false
+            displayCube: false,
+            cubeMapArr: [
+                { class: 'top', src: '' },
+                { class: 'right', src: '' },
+                { class: 'bottom', src: '' },
+                { class: 'left', src: '' },
+                { class: 'ahead', src: '' },
+                { class: 'rear', src: '' },
+            ]
         });
 
         const cube: any = ref(null);
@@ -67,39 +73,47 @@ export default defineComponent({
         width: 80px;
         height: 80px;
         position: absolute;
-        opacity: 0.4;
+        opacity: 0.6;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: all 0.8s ease;
+        transition: all 0.6s ease;
+        background-size: cover;
+        background-repeat: no-repeat;
 
         &.top {
-            background-color: rgb(92, 235, 235);
+            // background-color: rgb(92, 235, 235);
+            background-image: url('../../../../public/img/cube/cube1.jpeg');
             transform: rotateX(90deg) translateZ(40px);
         }
 
         &.right {
-            background-color: rgb(248, 248, 20);
+            // background-color: rgb(248, 248, 20);
+            background-image: url('../../../../public/img/cube/cube2.jpg');
             transform: rotateY(90deg) translateZ(40px);
         }
 
         &.bottom {
-            background-color: rgb(163, 241, 163);
+            // background-color: rgb(163, 241, 163);
+            background-image: url('../../../../public/img/3.jpeg');
             transform: rotateX(-90deg) translateZ(40px);
         }
 
         &.left {
-            background-color: rgb(253, 98, 98);
+            // background-color: rgb(253, 98, 98);
+            background-image: url('../../../../public/img/4.jpeg');
             transform: rotateY(-90deg) translateZ(40px);
         }
 
         &.ahead {
-            background-color: rgb(248, 205, 124);
+            // background-color: rgb(248, 205, 124);
+            background-image: url('../../../../public/img/2.jpeg');
             transform: rotateY(0deg) translateZ(40px);
         }
 
         &.rear {
-            background-color: rgb(212, 144, 243);
+            // background-color: rgb(212, 144, 243);
+            background-image: url('../../../../public/img/4.jpeg');
             transform: rotateY(180deg) translateZ(40px);
         }
     }
@@ -110,35 +124,36 @@ export default defineComponent({
     right: 50% - 10px;
     width: 300px;
     height: 300px;
-    transition: all 0.8s ease;
+    transition: all 0.6s ease;
 
     div {
-        width: 300px;
-        height: 300px;
-        transition: all 0.8s ease;
+        width: 340px;
+        height: 340px;
+        transition: all 0.6s ease;
+        opacity: 0.9;
 
         &.top {
-            transform: rotateX(90deg) translateZ(150px);
+            transform: rotateX(90deg) translateZ(170px);
         }
 
         &.right {
-            transform: rotateY(90deg) translateZ(150px);
+            transform: rotateY(90deg) translateZ(170px);
         }
 
         &.bottom {
-            transform: rotateX(-90deg) translateZ(150px);
+            transform: rotateX(-90deg) translateZ(170px);
         }
 
         &.left {
-            transform: rotateY(-90deg) translateZ(150px);
+            transform: rotateY(-90deg) translateZ(170px);
         }
 
         &.ahead {
-            transform: rotateY(0deg) translateZ(150px);
+            transform: rotateY(0deg) translateZ(170px);
         }
 
         &.rear {
-            transform: rotateY(180deg) translateZ(150px);
+            transform: rotateY(180deg) translateZ(170px);
         }
     }
 }

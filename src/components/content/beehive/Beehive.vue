@@ -72,12 +72,6 @@ export default {
 		const data = reactive({
 			picLists: [
 				{
-					imgUrl: '/img/1.jpeg',
-					title: 'title1',
-					link: '#',
-					text: 'text1',
-				},
-				{
 					imgUrl: '/img/2.jpeg',
 					title: 'title2',
 					link: '#',

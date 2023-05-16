@@ -7,6 +7,8 @@ import 'view-ui-plus/dist/styles/viewuiplus.css'
 import animate from "animate.css";
 import '../src/assets/css/main.less'
 import '../src/assets/css/fonts.less'
+import 'element-plus/theme-chalk/el-loading.css'
+import 'element-plus/theme-chalk/el-message.css'
 
 const app = createApp(App)
 const pinia = createPinia()

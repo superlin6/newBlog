@@ -17,8 +17,7 @@
     font-family: 'yuan';
     font-weight: 600;
     background: url('../../../assets/img/banner.webp') no-repeat;
-    // background-size: cover;
-    background-position: 0 90%;
+    background-size: cover;
     line-height: 460px;
     text-align: center;
     color: #fff;
