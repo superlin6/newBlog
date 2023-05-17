@@ -43,12 +43,14 @@ const timeList: Ref<TimeListType[]> = ref([]);
 const githubCommitAPI = '/api/repos/superlin6/newBlog/commits'
 const mainStore = useMainStore();
 
+const formatTimeStamp = (timeStamp: string) => timeStamp?.substring(0, 10)?.replace(/\-/g, '/')
+
 const getGithubCommitData = () => {
     loading.value = true
     request.get(githubCommitAPI).then(res => {
         timeList.value = res.map(item => ({
             id: item?.node_id, 
-            timeStamp: item?.commit?.author?.date,
+            timestamp: formatTimeStamp(item?.commit?.author?.date),
             title: item?.commit?.message,
             commitInfo: item?.commit?.author?.name + ' committed'
         }))
