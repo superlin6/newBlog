@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <transition name="fadein">
+        <transition name="fadein" :appear="true">
             <div class="title" @click="showContent" v-show="!isShow">
                 <h2 class="animate__animated animate__backInDown">欢迎进入</h2>
                 <h3 class="animate__animated animate__fadeInUp">coderlin的blog</h3>
