@@ -1,23 +1,27 @@
 <template>
-    <Menu
+    <el-menu
         mode="horizontal"
-        theme="dark"
-        :active-name="data.activeIndex"
-        @on-select="switchTab"
+        background-color="#545c64"
+        text-color="#fff"
+        :router="true"
+        :ellipsis="false"
+        active-text-color="#ffd04b"
+        :default-active="data.activeIndex"
+        @select="switchTab"
         :class="{ nav: true, transparent: data.activeIndex === '/home' }"
         ref="menuRef"
     >
-        <div class="menu-nav">
-            <MenuItem name="/home">
+        <!-- <div class="menu-nav"> -->
+            <el-menu-item index="/home">
                 <Icon type="ios-paper" />
                 主页
-            </MenuItem>
-            <MenuItem name="/picture">
+            </el-menu-item>
+            <el-menu-item index="/picture">
                 <Icon type="ios-people" />
                 照片
-            </MenuItem>
-        </div>
-    </Menu>
+            </el-menu-item>
+        <!-- </div> -->
+    </el-menu>
 </template>
 
 <script lang="ts" setup>
@@ -44,6 +48,7 @@ watch(() => route.path,
 <style lang="less" scoped>
 .nav {
     background: url('../../../assets/img/content-background.jpeg');
+    z-index: 1;
     &.ivu-menu {
         display: flex;
         justify-content: center;
@@ -53,6 +58,8 @@ watch(() => route.path,
     }
     &.transparent {
         background: transparent;
+        outline: none;
+        border: none;
     }
 }
 </style>

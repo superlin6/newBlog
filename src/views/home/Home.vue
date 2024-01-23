@@ -39,7 +39,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onBeforeUnmount, Ref, ref } from 'vue';
+import { defineComponent, onMounted, onBeforeUnmount, Ref, ref, watch } from 'vue';
 import { useMainStore, useLineChartStore } from '../../store';
 import Cube from '../../components/content/animation/Cube.vue';
 import Windmill from '../../components/content/animation/Windmill.vue';
@@ -68,8 +68,8 @@ export default defineComponent({
     LineChart
 },
     setup() {
-        const isShow: Ref<Boolean> = ref(false)
-        const showBackground: Ref<Boolean> = ref(false)
+        const isShow: Ref<boolean> = ref(false)
+        const showBackground: Ref<boolean> = ref(false)
         const mainStore = useMainStore()
         const lineChartStore = useLineChartStore()
 
@@ -79,7 +79,6 @@ export default defineComponent({
         // 内容区
         const showContent = () => {
             isShow.value = true
-            mainStore.setTopBarVisible(true)
         };
         // 滚动监听
         const setScrollEvent = () => {
@@ -97,6 +96,10 @@ export default defineComponent({
         onBeforeUnmount(() => {
             window.removeEventListener('scroll', () => {})
         });
+
+        watch(() => isShow.value, (cur) => {
+            mainStore.setTopBarVisible(cur)
+        }, { immediate: true })
 
         return {
             isShow,

@@ -10,6 +10,8 @@ declare module 'vue' {
     Cube: typeof import('./src/components/content/animation/Cube.vue')['default']
     ElCard: typeof import('element-plus/es')['ElCard']
     ElImage: typeof import('element-plus/es')['ElImage']
+    ElMenu: typeof import('element-plus/es')['ElMenu']
+    ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElProgress: typeof import('element-plus/es')['ElProgress']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
