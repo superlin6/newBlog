@@ -486,7 +486,7 @@ button {
     padding: 10px 15px;
     text-align: center;
     border-top: 1px solid #e6e6e6;
-    height: 50px;
+    font-size: 14px;
     display: flex;
     justify-content: space-between;
     &::before {
@@ -586,10 +586,6 @@ button {
 }
 
 @media (max-width: 430px) {
-    .footer {
-        height: 50px;
-    }
-
     .filters {
         bottom: 10px;
     }
